@@ -1,0 +1,126 @@
+File Handling.
+Annotations:- 
+1) What are annotations?
+* Annotations got added from J2SE 5.
+* Annotations are also called metadata.
+* Metadata are being called as data about data.
+* So annotations are information about a class, member variables,
+  local variables , constructors , methods to compiler or for the
+  framework. Annotations are extensively used in advance java. 
+2) Can we create our own annotations?
+ans Yes we can create our own annotations
+3) What are annotations , are they classes/interfaces/something else?
+ans Annotations are interfaces.
+4) Any example of annotations?
+@Override
+5) How we identify annoations?
+Annnotation names are preceeded by @.
+6) What is the usage of @Override?
+It is for the compiler to know that the method with which we are 
+using this annotation is an overridden method. So compiler will keep 
+a check whether we have a method with similar signature and return 
+type in the base class. If it is not we are going to get compilation 
+error.
+7) We are not importing any package for @override.
+@override is within the package java.lang.
+8)  In java what is the default package which we need not to import
+java.lang
+9) There are many classes which are part of this lang package and
+while using those classes we dont have to write import statement.
+String,System,Exception,Integer
+10) What is the syntax of creating our own annotation?
+ans
+       @interface MyAnnotation {
+               String str();
+               int value();
+         }
+10b) How to use this interface with the code which we create
+
+      public class MyClass {
+
+          @MyAnnotation(str="Hello",value=10)
+         public void display(){
+       }
+    }
+
+11) How this @override is being defined?
+     @interface Override {}
+12) There are interfaces in Java which don't have any methods , what are those interfaces being called?
+    ans: Those interfaces are called as marker interface. 
+13) Have you studied any kind of marker interface?
+    ans: We have worked with Serializable interface which is a marker interface.
+14) Any other Annotations which are available in java.lang package and can 
+be used
+@Deprecated is a marker annotation. It indicates that a declaration is obsolete
+and has been replaced by a newer form.
+@SuppressWarnings specifies that one or more warnings that might be issued by the
+compiler are to be suppressed.
+
+-----------------------------------------------------------------------------------------------------------
+ 
+Let us talk about some of the annotations which are applied on annotations. Which means annotations which
+are used while creating the annotations. These annotations are available within the package java.lang.annotation.
+
+@Retention
+@Retention is designed to be used only as an annotation to another annotation. It specifies the retention
+policy.
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation {
+               String str();
+               int value();
+         }
+
+
+Specifying the RetentionPolicy 
+A retention policy determines at what point an annotation is discarded. Java defines 3 types of policies
+SOURCE====> annotations remain within the java code only and when we compile the code and byte code is
+created , byte code wont contain the annotation.
+CLASS=====? annotations remain within the java code and the byte code but during the runtime it is not available.
+RUNTIME=====> Annotations remain till the execution of the java code.
+
+Thus RUNTIME retention offers the greatest annotation persistence.
+
+Q. If we are not mentioning any retention policy , which is the default one
+ANS CLASS.
+
+
+
+----------------------------------------------------------------------
+@Target 
+The @Target annotation specifies the types of declarations to which an annotation can be applied. 
+Annotations can be targeted constructors, another annotation, member variables, local varaibles, methods
+packages, parameters and types ( classes, interfaces, enums)
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface MyAnnotation {
+               String str();
+               int value();
+         }
+
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD,ElementType.FIELD)
+@interface MyAnnotation {
+               String str();
+               int value();
+         }
+
+-------------------------------------------------------------------------------------------------------
+
+Let us see, how annotations are defined and how in java code we can read metadata given provided by the 
+annotation.
+
+------------------------------------------------------------------------------------------------------------
+
+While working with annotations, we have keep 3 things in mind:
+
+1) Defining the annotation.
+2) Applying the annotation with a class or mothod or variable.
+3) Reading the data provided with the annotation.
+---------------------------------------------------------------------------------------------------
+
+Basically through the concept of Reflection( By using Reflection API) we are able to derive or read the
+data from annotations and maybe we can retain those information by saving it in some database or file.
+-------------------------------------------------------------------------------------------------------------
